@@ -23,9 +23,18 @@ namespace ShopServer.Controllers
         [HttpGet]
         public IEnumerable<ProductOrderInApi> Get()
         {
-            return dbContext.ProductOrderIns.Select(s => (ProductOrderInApi)s);
+            //return dbContext.ProductOrderIns.Select(s => (ProductOrderInApi)s);
+            return dbContext.ProductOrderIns.ToList().Select(s => {
+                var product = dbContext.Products.FirstOrDefault(p => p.Id == s.IdProduct);
+                return CreateProductOrderInApi(s, product);
+            });
         }
-
+        private ProductOrderInApi CreateProductOrderInApi(ProductOrderIn productOrderIn, Product product)
+        {
+            var productOrderInApi = (ProductOrderInApi)productOrderIn;
+            productOrderInApi.Product = (ProductApi)product;
+            return productOrderInApi;
+        }
         // GET api/<ProductOrderInController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductOrderInApi>> Get(int id)

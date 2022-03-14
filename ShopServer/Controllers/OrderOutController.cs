@@ -117,9 +117,10 @@ namespace ShopServer.Controllers
             var oldOrderOut = await dbContext.OrderOuts.FindAsync(id);
             if (oldOrderOut == null)
                 return NotFound();
-            oldOrderOut.ProductOrderOuts = new HashSet<ProductOrderOut>(editOrderOut.ProductOrderOuts.Select(s =>
-                    new ProductOrderOut { Count = s.Count, Discount =s.Discount , IdOrderOut = s.IdOrderOut, IdProductOrderIn = s.IdProductOrderIn, Price = s.Price }));
-            dbContext.Entry(oldOrderOut).CurrentValues.SetValues(editOrderOut);
+            //oldOrderOut.ProductOrderOuts = new HashSet<ProductOrderOut>(editOrderOut.ProductOrderOuts.Select(s =>
+            //        new ProductOrderOut { Count = s.Count, Discount =s.Discount , IdOrderOut = s.IdOrderOut, IdProductOrderIn = s.IdProductOrderIn, Price = s.Price  }));
+            OrderOut newOrderOut = (OrderOut)editOrderOut;
+            dbContext.Entry(oldOrderOut).CurrentValues.SetValues(newOrderOut);
             await dbContext.SaveChangesAsync();
             return Ok();
         }

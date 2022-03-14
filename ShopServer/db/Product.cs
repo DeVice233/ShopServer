@@ -25,6 +25,7 @@ namespace ShopServer.db
         public decimal? RetailPrice { get; set; }
         public int? IdFabricator { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public int? MinCount { get; set; }
 
         public virtual Fabricator IdFabricatorNavigation { get; set; }
         public virtual ProductType IdProductTypeNavigation { get; set; }

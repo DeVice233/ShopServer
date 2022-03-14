@@ -14,7 +14,7 @@ namespace ShopServer.db
             {
                 return null;
             }
-            return new ProductApi { Article = product.Article, Barcode = product.Barcode, Description = product.Description, Id = product.Id, IdProductType = product.IdProductType, IdUnit = product.IdUnit, Image = product.Image, RetailPrice = product.RetailPrice, Title = product.Title, WholesalePrice = product.WholesalePrice, IdFabricator = product.IdFabricator, deleted_at = product.DeletedAt };
+            return new ProductApi { Article = product.Article, Barcode = product.Barcode, Description = product.Description, Id = product.Id, IdProductType = product.IdProductType, IdUnit = product.IdUnit, Image = product.Image, RetailPrice = product.RetailPrice, Title = product.Title, WholesalePrice = product.WholesalePrice, IdFabricator = product.IdFabricator, deleted_at = product.DeletedAt, MinCount =product.MinCount};
         }
 
         public static explicit operator Product(ProductApi product)
@@ -23,7 +23,7 @@ namespace ShopServer.db
             {
                 return null;
             }
-            return new Product { Article = product.Article, Barcode = product.Barcode, Description = product.Description, Id = product.Id, IdProductType = product.IdProductType, IdUnit = product.IdUnit, Image = product.Image, RetailPrice = product.RetailPrice, Title = product.Title, WholesalePrice = product.WholesalePrice, DeletedAt = product.deleted_at, IdFabricator = product.IdFabricator };
+            return new Product { Article = product.Article, Barcode = product.Barcode, Description = product.Description, Id = product.Id, IdProductType = product.IdProductType, IdUnit = product.IdUnit, Image = product.Image, RetailPrice = product.RetailPrice, Title = product.Title, WholesalePrice = product.WholesalePrice, DeletedAt = product.deleted_at, IdFabricator = product.IdFabricator, MinCount = product.MinCount };
         }
     }
 }
